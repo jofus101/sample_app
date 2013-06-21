@@ -29,7 +29,12 @@ describe User do
 		
 		it { should be_valid }
 	end
-		
+	
+	describe "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
+  end
+	
   describe "when password is not present" do
     before { @user.password = @user.password_confirmation = " " }
     it { should_not be_valid }
