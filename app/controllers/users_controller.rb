@@ -56,7 +56,7 @@ private
 
   def signed_out_user
     if signed_in?
-      redirect_to root_path, notice: "You've already signed up! You're signed in right now. :)"
+      redirect_to root_path, notice: "You've already signed up! You're signed in right now.  :)"
     end
   end
 
