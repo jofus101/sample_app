@@ -48,13 +48,6 @@ describe "UserPages" do
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
 				it { should have_link('Sign out') }
-
-        describe "navigating to signup page" do
-          before { visit signup_path }
-          it { should have_selector('h1', text: 'Welcome to the Sample App') }
-          it { should have_link('Sign up now!') }
-          it { should have_selector('div.alert.alert-notice', text: 'You\'ve already') }
-        end
       end
     end
   end
