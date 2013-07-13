@@ -17,8 +17,9 @@ describe "UserPages" do
       it { should have_content(m1.content) }
       it { should have_content(m2.content) }
       it { should have_content(user.microposts.count) }
+    end
   end
-  
+
   describe "signup" do
     before { visit signup_path }
    
@@ -56,12 +57,12 @@ describe "UserPages" do
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
 				it { should have_link('Sign out') }
 
-        describe "navigating to signup page" do
-          before { visit signup_path }
-          it { should have_selector('h1', text: 'Welcome to the Sample App') }
-          it { should have_link('Sign up now!') }
-          it { should have_selector('div.alert.alert-notice', text: 'You\'ve already') }
-        end
+#        describe "navigating to signup page" do
+#          before { visit signup_path }
+#          it { should have_selector('h1', text: 'Welcome to the Sample App') }
+#          it { should have_link('Sign up now!') }
+#          it { should have_selector('div.alert.alert-notice', text: 'You\'ve already') }
+#        end
       end
     end
   end
@@ -151,9 +152,5 @@ describe "UserPages" do
         end
       end
     end
-
-  end
-
-
-  
+  end  
 end
