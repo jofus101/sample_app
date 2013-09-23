@@ -52,7 +52,6 @@ describe User do
     end    
   end
 
-
   describe "with admin attribute set to 'true'" do
     before do
       @user.save!
@@ -105,8 +104,8 @@ describe User do
 
   
   describe "when name is not present" do
-	before {@user.name = " "}
-	it { should_not be_valid }
+  	before {@user.name = " "}
+  	it { should_not be_valid }
   end
   
   describe "when name is too long" do
@@ -146,7 +145,7 @@ describe User do
       user_with_same_email.save
     end
 	
-	it { should_not be_valid }
+	   it { should_not be_valid }
   end
   
   describe "when email address is already taken case insensitive" do
@@ -156,7 +155,7 @@ describe User do
       user_with_same_email.save
     end
 	
-	it { should_not be_valid }
+	  it { should_not be_valid }
   end
 
   describe "email address with mixed case" do
@@ -196,10 +195,21 @@ describe User do
       let(:unfollowed_post) do
         FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
       end
+      let(:followed_user) { FactoryGirl.create(:user) }
+
+      before do
+        @user.follow!(followed_user)
+        3.times { followed_user.microposts.create!(content: "Lorem ipsum") }
+      end
 
       its(:feed) { should include(newer_micropost) }
       its(:feed) { should include(older_micropost) }
       its(:feed) { should_not include(unfollowed_post) }
+      its(:feed) do
+        followed_user.microposts.each do |micropost|
+          should include(micropost)
+        end
+      end
     end
   end
 
